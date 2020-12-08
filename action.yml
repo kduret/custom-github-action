@@ -19,5 +19,7 @@ runs:
       shell: bash
     - run: cat test.key
       shell: bash
+    - run: ls ..
+      shell: bash
     - run: cat ../centreon/checkstyle-be.xml
       shell: bash

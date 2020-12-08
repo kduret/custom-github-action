@@ -62,6 +62,7 @@ if (count($params) === 1) {
 libxml_use_internal_errors(true);
 
 $root = @simplexml_load_string($xml);
+var_dump($root);
 
 if ($root === false) {
     $errors = libxml_get_errors();

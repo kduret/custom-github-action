@@ -12,5 +12,5 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: cat ../checkstyle-be.xml
+    - run: cat checkstyle-be.xml
       shell: bash

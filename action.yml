@@ -19,3 +19,5 @@ runs:
       shell: bash
     - run: cat test.key
       shell: bash
+    - run: |
+      ls ../centreon/build

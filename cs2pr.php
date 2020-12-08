@@ -29,7 +29,7 @@ foreach ($argv as $arg) {
     if (substr($arg, 0, 2) === '--') {
         $option = substr($arg, 2);
         if (preg_match('/^prefix="?(.+)"?/', $option, $matches)) {
-           $prefix = $matches[1];
+           $prefix = $matches[1] . ' ';
         } else {
             switch ($option) {
                 case 'graceful-warnings':

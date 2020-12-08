@@ -21,22 +21,30 @@ $version = '1.4.1-dev';
 // options
 $colorize = false;
 $gracefulWarnings = false;
+$prefix = '';
 
 // parameters
 $params = [];
 foreach ($argv as $arg) {
     if (substr($arg, 0, 2) === '--') {
         $option = substr($arg, 2);
-        switch ($option) {
-        case 'graceful-warnings':
-            $gracefulWarnings = true;
-            break;
-        case 'colorize':
-            $colorize = true;
-            break;
-        default:
-            echo "Unknown option ".$option."\n";
-            exit(9);
+        if (preg_match('/^prefix="?(.+)"?/', $option, $matches)) {
+           $prefix = $matches[1];
+        } else {
+            switch ($option) {
+                case 'graceful-warnings':
+                    $gracefulWarnings = true;
+                    break;
+                case 'colorize':
+                    $colorize = true;
+                    break;
+                case 'prefix':
+                    $prefix = true;
+                    break;
+                default:
+                    echo "Unknown option " . $option . "\n";
+                    exit(9);
+            }
         }
     } else {
         $params[] = $arg;
@@ -62,7 +70,6 @@ if (count($params) === 1) {
 libxml_use_internal_errors(true);
 
 $root = @simplexml_load_string($xml);
-var_dump($root);
 
 if ($root === false) {
     $errors = libxml_get_errors();
@@ -89,7 +96,7 @@ foreach ($root as $file) {
         $message = (string) $error['message'];
 
         $annotateType = annotateType($type);
-        annotateCheck($annotateType, relativePath($filename), $line, $message, $colorize);
+        annotateCheck($annotateType, relativePath($filename), $line, $prefix . $message, $colorize);
 
         if (!$gracefulWarnings || $annotateType === 'error') {
             $exit = 1;

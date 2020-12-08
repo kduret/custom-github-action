@@ -20,3 +20,4 @@ runs:
     - run: cat test.key
       shell: bash
     - run: cat ../centreon/checkstyle-be.xml
+      shell: bash

@@ -38,9 +38,6 @@ foreach ($argv as $arg) {
                 case 'colorize':
                     $colorize = true;
                     break;
-                case 'prefix':
-                    $prefix = true;
-                    break;
                 default:
                     echo "Unknown option " . $option . "\n";
                     exit(9);
